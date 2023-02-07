@@ -20,6 +20,7 @@ builder.Services.AddDefaultIdentity<EntityUser>(options => {
 
 builder.Services.AddControllers();
 
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
