@@ -6,7 +6,7 @@
 
 
 # Databases folder
-Database/
+./Database/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
