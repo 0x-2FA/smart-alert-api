@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using smart_alert_api.Interfaces;
 using smart_alert_api.Models.Database;
+using smart_alert_api.Repositories;
 using smart_alert_api.Services.Auth;
+using smart_alert_api.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("SmartAlertContextConnection") ?? throw new InvalidOperationException("Connection string 'SmartAlertContextConnection' not found.");
@@ -9,18 +12,23 @@ var connectionString = builder.Configuration.GetConnectionString("SmartAlertCont
 builder.Services.AddDbContext<SmartAlertContext>(options =>
     options.UseSqlite(connectionString));
 
-builder.Services.AddDefaultIdentity<EntityUser>(options => {
+builder.Services.AddIdentity<EntityUser, IdentityRole>(options => {
     options.SignIn.RequireConfirmedAccount = false;
     options.SignIn.RequireConfirmedPhoneNumber = false;
     options.Password.RequireUppercase = false;
     options.Password.RequireDigit = false;
-    options.Password.RequiredLength = 8;
+    options.Password.RequiredLength = 6;
     })
-    .AddEntityFrameworkStores<SmartAlertContext>();
+    .AddDefaultUI()
+    .AddEntityFrameworkStores<SmartAlertContext>()
+    .AddDefaultTokenProviders();
 
 builder.Services.AddControllers();
 
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IEntityUserUtilities, EntityUserUtilities>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
