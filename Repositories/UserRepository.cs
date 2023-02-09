@@ -10,7 +10,6 @@ namespace smart_alert_api.Repositories
         private readonly SignInManager<EntityUser> _signInManager;
         private readonly IUserStore<EntityUser> _userStore;
         private readonly IUserEmailStore<EntityUser> _emailStore;
-        //private readonly RoleManager<IdentityRole> _roleManager;
 
         public UserRepository(SignInManager<EntityUser> signInManager, IUserStore<EntityUser> userStore, IEntityUserUtilities entityUserUtilities)
         {
@@ -32,10 +31,11 @@ namespace smart_alert_api.Repositories
             return _signInManager.UserManager.CheckPasswordAsync(user, password).Result;
         }
 
-        public void AddUser(EntityUser user, string password)
+        public void AddUser(EntityUser user, string password, string role)
         {
             _emailStore.SetUserNameAsync(user, user.Email, CancellationToken.None);
             _userStore.SetUserNameAsync(user, user.Email, CancellationToken.None);
+            _signInManager.UserManager.AddToRoleAsync(user, role);
 
             _signInManager.UserManager.CreateAsync(user, password);
         }
