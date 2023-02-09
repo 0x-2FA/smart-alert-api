@@ -3,6 +3,7 @@
     public interface IAuthService
     {
         AuthResult Login(string email, string password);
+        public void Logout();
         AuthResult Register(string email, string phone, string password);
 
     }
