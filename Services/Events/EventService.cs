@@ -15,11 +15,13 @@ namespace smart_alert_api.Services.Events
             _dateUtilities = dateUtilities;
         }
 
-        public EventResult CreateEvent(string type, string? photo, string? comment, string user_id)
+        public EventResult CreateEvent(string type, string latitude, string longitude, string? photo, string? comment, string user_id)
         {
             var evnt = new Event();
 
             evnt.Type = type;
+            evnt.Latitude = latitude;
+            evnt.Longitude = longitude;
             evnt.Timestamp = _dateUtilities.NowDefaultString();
             evnt.Photo = photo;
             evnt.Comment = comment;
@@ -29,9 +31,18 @@ namespace smart_alert_api.Services.Events
             return new EventResult(evnt);
         }
 
-        public EventResult DeleteEvent(long id)
+        public EventDeleteResult DeleteEvent(long id)
         {
-            throw new NotImplementedException();
+            _eventRepository.DeleteEventById(id);
+
+            return new EventDeleteResult(id);
+        }
+
+        public EventResult GetEvent(long id)
+        {
+            var evnt = _eventRepository.FindEventById(id);
+
+            return new EventResult(evnt);
         }
     }
 }
