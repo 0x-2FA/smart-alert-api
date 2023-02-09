@@ -30,6 +30,10 @@ namespace smart_alert_api.Models.Database
 
                 entity.Property(e => e.Photo).HasColumnName("photo");
 
+                entity.Property(e => e.Latitude).HasColumnName("latitude");
+
+                entity.Property(e => e.Longitude).HasColumnName("longitude");
+
                 entity.Property(e => e.Timestamp).HasColumnName("timestamp");
 
                 entity.Property(e => e.Type).HasColumnName("type");
