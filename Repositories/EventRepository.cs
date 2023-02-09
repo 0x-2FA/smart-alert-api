@@ -21,12 +21,16 @@ namespace smart_alert_api.Repositories
 
         public void DeleteEventById(long id)
         {
-            throw new NotImplementedException();
+            var evnt = FindEventById(id);
+
+            _context.Remove(evnt);
+
+            _context.SaveChangesAsync();
         }
 
         public Event? FindEventById(long id)
         {
-            throw new NotImplementedException();
+            return _context.Events.FirstOrDefault( evnt => evnt.Id == id );
         }
 
         public List<Event>? FindEventsByUserId(string userId)
