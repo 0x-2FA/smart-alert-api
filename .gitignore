@@ -5,8 +5,9 @@
 *.sln.docstates
 
 
-# Databases folder
-./Database/
+# Databases files
+*.db
+*.db*
 
 # Databases folder
 Migrations
