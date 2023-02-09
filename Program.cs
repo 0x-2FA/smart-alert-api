@@ -4,6 +4,7 @@ using smart_alert_api.Interfaces;
 using smart_alert_api.Models.Database;
 using smart_alert_api.Repositories;
 using smart_alert_api.Services.Auth;
+using smart_alert_api.Services.Events;
 using smart_alert_api.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,7 +29,9 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IEntityUserUtilities, EntityUserUtilities>();
 builder.Services.AddScoped<IAuthService, AuthService>();
-
+builder.Services.AddScoped<IEventRepository, EventRepository>();
+builder.Services.AddScoped<IEventService, EventService>();
+builder.Services.AddScoped<IDateUtilities, DateUtilities>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
