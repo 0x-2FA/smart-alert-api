@@ -8,6 +8,6 @@ namespace smart_alert_api.Interfaces
 
         Boolean IsPasswordValid(string email, string password);
 
-        void AddUser(EntityUser user, string password);
+        void AddUser(EntityUser user, string password, string role);
     }
 }
