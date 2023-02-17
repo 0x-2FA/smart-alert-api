@@ -36,7 +36,7 @@ namespace smart_alert_api.Controllers
                 registerRequest.phone, 
                 registerRequest.password);
 
-            var response = new AuthResponse(authResult.user.Email);
+            var response = new AuthResponse(authResult.user.Email, authResult.user.Id);
 
             return Ok(response);
         }
@@ -49,6 +49,7 @@ namespace smart_alert_api.Controllers
                 return BadRequest();
             }
 
+
             if (!_userRepository.IsPasswordValid(loginRequest.email, loginRequest.password))
             {
                 return BadRequest();
@@ -58,7 +59,7 @@ namespace smart_alert_api.Controllers
                 loginRequest.email,
                 loginRequest.password);
 
-            var response = new AuthResponse(authResult.user.Email);
+            var response = new AuthResponse(authResult.user.Email, authResult.user.Id);
 
             return Ok(response);
         }
