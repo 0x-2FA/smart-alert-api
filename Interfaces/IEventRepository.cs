@@ -6,6 +6,7 @@ namespace smart_alert_api.Interfaces
     {
         Event? FindEventById(long id);
         List<Event>? FindEventsByUserId(string userId);
+        List<Event>? GetAllEvents();
         void CreateEvent(Event evnt);
         void DeleteEventById(long id);
     }
