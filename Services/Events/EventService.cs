@@ -38,6 +38,13 @@ namespace smart_alert_api.Services.Events
             return new EventDeleteResult(id);
         }
 
+        public ListEventResult GetAll()
+        {
+            var listOfEvents = _eventRepository.GetAllEvents();
+
+            return new ListEventResult(listOfEvents);
+        }
+
         public EventResult GetEvent(long id)
         {
             var evnt = _eventRepository.FindEventById(id);
