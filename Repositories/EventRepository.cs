@@ -42,5 +42,14 @@ namespace smart_alert_api.Repositories
         {
             return _context.Events.ToList();
         }
+
+        public List<Event> GetEventsByType(string type)
+        {
+            return _context.Events.Where( evnt => 
+                evnt.Type
+                    .ToLower()
+                    .Equals(type.ToLower()))
+                .ToList();
+        }
     }
 }
