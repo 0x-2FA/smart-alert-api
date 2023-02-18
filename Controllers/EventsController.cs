@@ -80,5 +80,16 @@ namespace smart_alert_api.Controllers
 
             return Created(nameof(response.evnt), response.evnt);
         }
+
+        [HttpGet("all")]
+        public IActionResult All()
+        {
+
+            var listEventResult = _eventService.GetAll();
+
+            var response = new ListEventsResponse(listEventResult.listOfEvents);
+
+            return Ok(response);
+        }
     }
 }
