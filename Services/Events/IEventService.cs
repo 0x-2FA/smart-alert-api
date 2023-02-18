@@ -8,5 +8,6 @@ namespace smart_alert_api.Services.Events
         EventResult CreateEvent(string type, string latitude, string longitude, string? photo, string? comment, string user_id);
         EventDeleteResult DeleteEvent(long id);
         ListEventResult GetAll();
+        ListEventResult GetAllImportant();
     }
 }
