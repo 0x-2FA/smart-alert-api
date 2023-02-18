@@ -37,5 +37,10 @@ namespace smart_alert_api.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public List<Event>? GetAllEvents()
+        {
+            return _context.Events.ToList();
+        }
     }
 }
