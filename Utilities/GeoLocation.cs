@@ -10,5 +10,10 @@ namespace smart_alert_api.Utilities
             var mileToKm = 1.609344;
             return GeoCalculator.GetDistance(latitude, longitude, otherLatitude, otherLongitude) * mileToKm;
         }
+
+        public CoordinateBoundaries SetRadiusBoundaries(double latitude, double longitude, int radius)
+        {
+            return new CoordinateBoundaries(latitude, longitude, radius);
+        }
     }
 }
