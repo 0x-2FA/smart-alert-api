@@ -91,5 +91,16 @@ namespace smart_alert_api.Controllers
 
             return Ok(response);
         }
+
+        [HttpGet("important")]
+        public IActionResult Important()
+        {
+
+            var listEventResult = _eventService.GetAllImportant();
+
+            var response = new ImportantEventsResponse(listEventResult.earthquakeEvents, listEventResult.importantFireEvent, null);
+
+            return Ok(response);
+        }
     }
 }
