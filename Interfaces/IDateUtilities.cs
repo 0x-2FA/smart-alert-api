@@ -12,5 +12,17 @@
 
         public string DatePreviousDayCustomString(string date, string format);
 
+        public TimeOnly TimeNowDefault();
+
+        public TimeOnly TimeBeforeDefault(int hoursToSubtract);
+
+        public string TimeNowDefaultString();
+
+        public string TimeBeforeDefaultString(int hoursToSubtract);
+
+        public string TimeOnlyString(string timestamp);
+
+        public bool BetweenHoursFromNow(string timestamp);
+
     }
 }
