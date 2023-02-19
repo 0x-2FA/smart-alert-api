@@ -92,13 +92,13 @@ namespace smart_alert_api.Utilities
             return timeOnly.ToString("HH:mm");
         }
 
-        public bool BetweenHoursFromNow(string timestamp)
+        public bool BetweenHoursFromNow(string timestamp, int hours)
         {
             DateTime timestampDateTime = DateTime.Parse(timestamp);
 
             TimeOnly timeOnly = TimeOnly.FromDateTime(timestampDateTime);
 
-            if(timeOnly.IsBetween(TimeBeforeDefault(2), TimeNowDefault()))
+            if(timeOnly.IsBetween(TimeBeforeDefault(hours), TimeNowDefault()))
             {
                 return true;
             }

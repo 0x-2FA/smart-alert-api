@@ -22,7 +22,7 @@
 
         public string TimeOnlyString(string timestamp);
 
-        public bool BetweenHoursFromNow(string timestamp);
+        public bool BetweenHoursFromNow(string timestamp, int hours);
 
     }
 }
