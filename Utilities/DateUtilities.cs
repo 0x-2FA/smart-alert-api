@@ -47,5 +47,64 @@ namespace smart_alert_api.Utilities
             return previousDateTime.ToString(format);
         }
 
+        public TimeOnly TimeNowDefault()
+        {
+            TimeOnly timeOnlyNow = TimeOnly.FromDateTime(DateTime.Now);
+
+            return timeOnlyNow;
+        }
+
+        public TimeOnly TimeBeforeDefault(int hoursToSubtract)
+        {
+            TimeOnly timeOnlyNow = TimeOnly.FromDateTime(DateTime.Now);
+
+            TimeOnly timeOnlyBefore = timeOnlyNow.AddHours(-hoursToSubtract);
+
+            return timeOnlyBefore;
+        }
+
+        public string TimeNowDefaultString()
+        {
+            TimeOnly timeOnly = TimeOnly.FromDateTime(DateTime.Now);
+
+            String now = timeOnly.ToString("HH:mm");
+
+            return now;
+        }
+
+        public string TimeBeforeDefaultString(int hoursToSubtract)
+        {
+            TimeOnly timeOnly = TimeOnly.FromDateTime(DateTime.Now);
+
+            timeOnly.AddHours(-hoursToSubtract);
+
+            String now = timeOnly.ToString("HH:mm");
+
+            return now;
+        }
+
+        public string TimeOnlyString(string timestamp)
+        {
+            DateTime timestampDateTime = DateTime.Parse(timestamp);
+
+            TimeOnly timeOnly = TimeOnly.FromDateTime(timestampDateTime);
+
+            return timeOnly.ToString("HH:mm");
+        }
+
+        public bool BetweenHoursFromNow(string timestamp)
+        {
+            DateTime timestampDateTime = DateTime.Parse(timestamp);
+
+            TimeOnly timeOnly = TimeOnly.FromDateTime(timestampDateTime);
+
+            if(timeOnly.IsBetween(TimeBeforeDefault(2), TimeNowDefault()))
+            {
+                return true;
+            }
+            
+            return false;
+        }
+
     }
 }
