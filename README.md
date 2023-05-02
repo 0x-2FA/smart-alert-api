@@ -20,7 +20,7 @@ This is the backend API and it was developed using C#.NET 6 with Identity and En
 <p>
 
 ```http
-  GET /auth/register
+GET /auth/register
 ```
 
 | Parameter |
@@ -47,7 +47,7 @@ Example
 <p>
 
 ```http
-  POST /auth/login
+POST /auth/login
 ```
 
 | Parameter |
@@ -73,7 +73,7 @@ Example
 <p>
 
 ```http
-  POST /auth/logout
+POST /auth/logout
 ```
 
 | Parameter |
@@ -102,7 +102,7 @@ Example
 <p>
 
 ```http
-  GET /events/all
+GET /events/all
 ```
 
 | Parameter |
@@ -119,7 +119,7 @@ Example
 <p>
 
 ```http
-  GET /events/{id}
+GET /events/{id}
 ```
 
 | Parameter |  Type  | Required |
@@ -136,7 +136,7 @@ Example
 <p>
 
 ```http
-  DELETE /events/{id}
+DELETE /events/{id}
 ```
 
 | Parameter |  Type  | Required |
@@ -149,11 +149,41 @@ Example
 </p>
 </details>
 
+<details><summary>Create</summary>
+<p>
+
+```http
+CREATE /events/create
+```
+
+| Parameter |
+| :-------- |
+| none      |
+
+| Body      | Type |
+| :-------- |:---- |
+| yes       |`json`|
+
+Example 
+
+```json
+{
+  "type": "string",
+  "latitude": "string",
+  "longitude": "string",
+  "photo": "string",
+  "comment": "string",
+  "user_id": "string"
+}
+```
+</p>
+</details>
+
 <details><summary>Important</summary>
 <p>
 
 ```http
-  GET /events/important
+GET /events/important
 ```
 
 | Parameter |
@@ -170,7 +200,7 @@ Example
 <p>
 
 ```http
-  GET /events/stats
+GET /events/stats
 ```
 
 | Parameter |
