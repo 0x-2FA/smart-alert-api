@@ -98,7 +98,18 @@ namespace smart_alert_api.Controllers
 
             var listEventResult = _eventService.GetAllImportant();
 
-            var response = new ImportantEventsResponse(listEventResult.earthquakeEvents, listEventResult.importantFireEvent, null);
+            var response = new ImportantEventsResponse(listEventResult.importantEarthquakeEvent, listEventResult.importantFireEvent, null);
+
+            return Ok(response);
+        }
+
+        [HttpGet("stats")]
+        public IActionResult Stats(string id)
+        {
+
+            var result = _eventService.GetEventUserStatistics(id);
+
+            var response = new EventUserStatisticsResponse(result.earthquakeEventsNum, result.fireEventsNum, result.floodEventsNum);
 
             return Ok(response);
         }
