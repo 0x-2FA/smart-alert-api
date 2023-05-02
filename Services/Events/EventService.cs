@@ -49,6 +49,25 @@ namespace smart_alert_api.Services.Events
             return new ListEventResult(listOfEvents);
         }
 
+        public EventUserStatisticsResult GetEventUserStatistics(string userId)
+        {
+            var listOfEvents = _eventRepository.GetAllEvents();
+
+            var listOfEarthquakeEvents = listOfEvents.Where(evnt =>
+                                   evnt.UserId.Equals(userId)
+                                   && evnt.Type.ToLower().Equals("earthquake")).ToList();
+
+            var listOfFireEvents = listOfEvents.Where(evnt => 
+                                   evnt.UserId.Equals(userId) 
+                                   && evnt.Type.ToLower().Equals("fire")).ToList();
+
+            var listOfFloodEvents = listOfEvents.Where(evnt =>
+                                   evnt.UserId.Equals(userId)
+                                   && evnt.Type.ToLower().Equals("flood")).ToList();
+
+            return new EventUserStatisticsResult(listOfEarthquakeEvents.Count, listOfFireEvents.Count, listOfFloodEvents.Count);
+        }
+
         public ImportantEventsResult GetAllImportant()
         {
 
@@ -57,7 +76,7 @@ namespace smart_alert_api.Services.Events
             var importantFireEvent = this.ImportantFireEvents();
 
 
-            return new ImportantEventsResult(earthquakeEvents, importantFireEvent, null);
+            return new ImportantEventsResult(importantEarthquakeEvent, importantFireEvent, null);
         }
 
         public EventResult GetEvent(long id)
@@ -86,7 +105,7 @@ namespace smart_alert_api.Services.Events
             var filteredListByTime = filteredListByDate.Where(evnt => 
             _dateUtilities.TimeOnlyString(evnt.Timestamp)
             .Equals(now) 
-            || _dateUtilities.BetweenHoursFromNow(evnt.Timestamp, 2)).ToList();
+            || _dateUtilities.BetweenHoursFromNow(evnt.Timestamp, 6)).ToList();
 
             if (filteredListByDate.Count <= 5)
             {
@@ -131,7 +150,7 @@ namespace smart_alert_api.Services.Events
             // filter by time (Maybe skip)
 
 
-            if(filteredListByDate.Count <= 10)
+            if(filteredListByDate.Count <= 3)
             {
                 return null;
             }
