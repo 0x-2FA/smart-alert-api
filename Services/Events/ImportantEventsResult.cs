@@ -2,5 +2,5 @@
 
 namespace smart_alert_api.Services.Events
 {
-    public record ImportantEventsResult(Event? earthquakeEvents, Event? importantFireEvent, Event? importantFloodEvent);
+    public record ImportantEventsResult(Event? importantEarthquakeEvent, Event? importantFireEvent, Event? importantFloodEvent);
 }
